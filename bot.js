@@ -57,7 +57,15 @@ client.on('interactionCreate',
 
         if(msg.commandName == "panda") {
             toReply = msg;
-            gis(queries[Math.floor(Math.random()*queries.length)], (error, results) => {
+            var opts = {
+                searchTerm: queries[Math.floor(Math.random()*queries.length)],
+                queryStringAddition: '',
+                filterOutDomains: [
+                  'fbsbx.com',
+                  "people.com"
+                ]
+            }
+            gis(opts, (error, results) => {
                 if (error) {
                     console.log(error);
                 }
